@@ -21,7 +21,7 @@ spec:
           title: Common Name
           type: string
           description: Provide a component (service) name
-          pattern: '^([a-zA-z][a-zA-z0-9-]*)(-[a-zA-Z0-9-]+)*$'
+          pattern: '^([a-zA-Z][a-zA-Z0-9]*)(-[a-zA-Z0-9]+)*$'
         owner:
           title: Environment
           type: string
