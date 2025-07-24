@@ -17,12 +17,12 @@ spec:
         - component_id
         - environment
       properties:
-        name:
+        component_id:
           title: Common Name
           type: string
           description: Provide a component (service) name
           pattern: '^([a-zA-Z][a-zA-Z0-9]*)(-[a-zA-Z0-9]+)*$'
-        owner:
+        environment:
           title: Environment
           type: string
           description: The environment to deploy to
@@ -38,23 +38,17 @@ spec:
       input:
         url: ./template
         values:
-          name: ${{ parameters.name }}
-          owner: ${{ parameters.owner }}
-
-    - id: fetch-docs
-      name: Fetch Docs
-      action: fetch:plain
-      input:
-        targetPath: ./community
-        url: https://github.com/backstage/community/tree/main/backstage-community-sessions
+          app_name: ${{ parameters.component_id }}
+          app_environment: ${{ parameters.environment }}
 
     - id: publish
       name: Publish
       action: publish:github
       input:
-        description: This is ${{ parameters.name }}
-        repoUrl: ${{ parameters.repoUrl }}
+        description: This is ${{ parameters.component_id }}
+        repoUrl: github.com?owner=RushkaVenter&repo=${{ parameters.component_id }}
         defaultBranch: 'main'
+        protectDefaultBranch: false
 
     - id: register
       name: Register
