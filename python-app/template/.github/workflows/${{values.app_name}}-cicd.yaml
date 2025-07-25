@@ -61,6 +61,12 @@ jobs:
       - name: Ensure ArgoCD repo and app
         shell: bash
         run: |
+          argocd login argocd-server.argocd \
+          --insecure \
+          --grpc-web \
+          --username admin \
+          --password ${{'${{ secrets.ARGOCD_PASSWORD }}'}}
+          
           repo=https://github.com/rushka-venter-org/${{values.app_name}}.git
 
           argocd repo list \
