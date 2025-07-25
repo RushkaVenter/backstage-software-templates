@@ -49,6 +49,7 @@ spec:
         repoUrl: github.com?owner=rushka-venter-org&repo=${{ parameters.component_id }}
         defaultBranch: 'main'
         protectDefaultBranch: false
+        repoVisibility: public
 
     - id: register
       name: Register
