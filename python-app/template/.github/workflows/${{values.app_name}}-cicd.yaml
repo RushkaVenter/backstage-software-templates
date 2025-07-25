@@ -92,4 +92,5 @@ jobs:
       - name: Argocd app sync
         shell: bash
         run: |
+          argocd app sync ${{values.app_name}} --timeout 100
           argocd app wait sync ${{values.app_name}} --timeout 100
