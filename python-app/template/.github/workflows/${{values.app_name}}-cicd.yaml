@@ -57,15 +57,6 @@ jobs:
           curl -ksSL -o argocd https://argocd-server.argocd/download/argocd-linux-amd64
           chmod +x argocd
           sudo mv ./argocd /usr/local/bin/argocd
-
-      - name: Login to ArgoCD
-        shell: bash
-        run: |
-          argocd login argocd-server.argocd \
-          --insecure \
-          --grpc-web \
-          --username admin \
-          --password ${{'${{ secrets.ARGOCD_PASSWORD }}'}}
       
       - name: Ensure ArgoCD repo and app
         shell: bash
@@ -92,4 +83,9 @@ jobs:
       - name: Argocd app sync
         shell: bash
         run: |
+          argocd login argocd-server.argocd \
+          --insecure \
+          --grpc-web \
+          --username admin \
+          --password ${{'${{ secrets.ARGOCD_PASSWORD }}'}}
           argocd app wait sync ${{values.app_name}} --timeout 100
