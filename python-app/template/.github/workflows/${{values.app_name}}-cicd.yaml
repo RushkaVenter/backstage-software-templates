@@ -11,7 +11,7 @@ jobs:
   ci:
     runs-on: ubuntu-latest
     outputs:
-      commit_id : ${{ env.COMMIT_ID }}
+      commit_id : ${{'${{ env.COMMIT_ID }}'}}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
