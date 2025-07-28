@@ -89,6 +89,14 @@ jobs:
           --sync-policy manual \
           --sync-option CreateNamespace=true
 
+      - name: Debug ArgoCD permissions
+        shell: bash
+        run: |
+          argocd app list
+          argocd cluster list
+          argocd repo list
+          argocd account get-user-info
+
       - name: Argocd app sync
         shell: bash
         run: |
