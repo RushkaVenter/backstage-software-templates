@@ -101,9 +101,3 @@ jobs:
         shell: bash
         run: |
           argocd app sync ${{values.app_name}}
-
-      - name: Argocd app await sync
-        shell: bash
-        run: |
-          sleep 30
-          argocd app wait sync ${{values.app_name}} --timeout 100
